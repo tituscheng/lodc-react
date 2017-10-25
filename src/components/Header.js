@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const $ = window.$;
+
 class Logo extends React.Component {
   render() {
     return (
@@ -28,6 +30,10 @@ class NavLink extends React.Component {
 }
 
 class Header extends React.Component {
+  componentDidMount() {
+
+
+  }
   render() {
     return (
       <header>

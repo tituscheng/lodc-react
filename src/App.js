@@ -11,6 +11,7 @@ import Preloader from './components/Preloader';
 import NewsMain from './components/news/NewsMain';
 import EventMain from './components/events/EventMain';
 import GalleryMain from './components/gallery/GalleryMain';
+import ContactMain from './components/contact/ContactMain';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/news" component={NewsMain} />
             <Route exact path="/events" component={EventMain} />
             <Route exact path="/gallery" component={GalleryMain} />
+            <Route exact path="/contact" component={ContactMain} />
             <Footer />
           </Wrapper>
         </div>
