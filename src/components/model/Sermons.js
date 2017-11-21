@@ -21,7 +21,7 @@ export default class Sermons {
   // }
 
   static getRecent(n, callback) {
-    $.get("http://default-environment.tdtddkdkmp.us-west-2.elasticbeanstalk.com/api/api/sermon/recent", function(response, status){
+    $.get("http://default-environment.tdtddkdkmp.us-west-2.elasticbeanstalk.com/api/sermon/recent", function(response, status){
       callback(response);
     });
   }

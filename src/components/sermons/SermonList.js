@@ -21,7 +21,7 @@ class SermonList extends React.Component {
 
   //After the sermons are fetch, it automatically calls updateSermon to handle the changes to the view
   fetchSermons() {
-    $.get("http://default-environment.tdtddkdkmp.us-west-2.elasticbeanstalk.com/api/api/sermon/get", function(response, status){
+    $.get("http://default-environment.tdtddkdkmp.us-west-2.elasticbeanstalk.com/api/sermon/get", function(response, status){
       this.updateSermons(response.data.sermons);
     }.bind(this));
   }
