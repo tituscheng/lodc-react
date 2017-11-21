@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import RevolutionSlider from './RevolutionSlider';
-import UpcomingEvents from './UpcomingEvents';
-import About from './About';
-import LatestSermons from './LatestSermons';
-import Testimonial from './Testimonial';
-import Container from './Container';
-import LodcMap from '../LodcMap';
-import CountDownTimer from './CountDownTimer';
+import React, { Component } from 'react'
+import RevolutionSlider from './RevolutionSlider'
+import UpcomingEvents from './UpcomingEvents'
+import About from './About'
+import LatestSermons from './LatestSermons'
+import Testimonial from './Testimonial'
+import Container from './Container'
+import LodcMap from '../LodcMap'
+import CountDownTimer from './CountDownTimer'
 import LodcAPI from '../model/Api'
+import { connect } from 'react-redux'
 
 const $ = window.$;
 
@@ -57,10 +58,10 @@ class IndexPage extends React.Component {
       <div>
         <RevolutionSlider slider={this.state.slider} />
         <Container>
-          <UpcomingEvents events={this.state.events}/>
+          <UpcomingEvents events={this.state.events} lang={this.props.lang} />
           <CountDownTimer />
-          <About about={this.state.about}/>
-          <LatestSermons />
+          <About about={this.state.about} lang={this.props.lang} />
+          <LatestSermons lang={this.props.lang} />
           <Testimonial contents={this.state.testimonies} />
         </Container>
       </div>
@@ -68,4 +69,15 @@ class IndexPage extends React.Component {
   }
 }
 
-export default IndexPage;
+const mapStateToProps = (state) => {
+  console.log("Current language selection is " + state.lodcApp.lang);
+  return {
+    lang: state.lodcApp.lang
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);

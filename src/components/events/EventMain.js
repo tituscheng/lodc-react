@@ -124,7 +124,6 @@ class EventMain extends React.Component {
         <SubHeader title="Events" />
         <ClearFix />
         <div id="content">
-
             <div className="container">
                 {
                   this.state.events.map(function(eventGroup) {
@@ -143,9 +142,7 @@ class EventMain extends React.Component {
                   })
                 }
             </div>
-
         </div>
-
       </div>
 
     )

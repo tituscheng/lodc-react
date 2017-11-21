@@ -1,8 +1,8 @@
-import React from 'react';
-import SubHeader from '../SubHeader';
-import ClearFix from '../ClearFix';
-
-import moment from 'moment-timezone';
+import React from 'react'
+import SubHeader from '../SubHeader'
+import ClearFix from '../ClearFix'
+import { connect } from 'react-redux'
+import moment from 'moment-timezone'
 
 const $ = window.$;
 
@@ -88,6 +88,40 @@ class NewsManager {
   }
 }
 
+class NewsBarItem extends React.Component {
+  render() {
+    return (
+      <li>
+          <div className="date-box">
+              <span className="day">{this.props.day}</span>
+              <span className="month">{this.props.month}</span>
+          </div>
+          <div className="txt">
+              <h5><a href="css/#">{this.props.title}</a></h5>
+              <div>
+                  <div>{this.props.content}</div>
+              </div>
+          </div>
+      </li>
+    )
+  }
+}
+
+class NewsSideBar extends React.Component {
+  render() {
+    return (
+      <div id="sidebar" className="col-md-4">
+        <div className="widget latest_news">
+            <h3>{this.props.lang == "en" ? "Latest News" : "최신 뉴스"}</h3>
+            <ul className="bloglist-small">
+              <NewsBarItem day="01" month="FEB" title="Lin: 'God Is Challenging Me!'" content="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque" />
+            </ul>
+        </div>
+      </div>
+    )
+  }
+}
+
 
 class NewsMain extends React.Component {
   constructor(props) {
@@ -113,9 +147,6 @@ class NewsMain extends React.Component {
     this.setState({news: list});
   }
 
-  componentDidMount() {
-
-  }
   render() {
     return (
       <div>
@@ -123,35 +154,44 @@ class NewsMain extends React.Component {
           <ClearFix />
           <div id="content">
             <div className="container">
-              {
-                this.state.news.map(function(newsGroup){
-                  return (
-                    <div>
-                      <div className="row">
-                          <div className="col-md-10 col-md-offset-1">
-                            <center><h2> {newsGroup.groupName} </h2></center>
-                              <ul className="blog-list">
-                                {
-                                  newsGroup.news.map(function(newsItem) {
-                                    return (
-                                      <NewsItem date={newsItem.date} title={newsItem.title.en}/>
-                                    )
-                                  })
-                                }
-                              </ul>
-
-                          </div>
-                      </div>
-                    </div>
-                  )
-                })
-              }
+                <div className="row">
+                  <div className="col-md-8">
+                    {
+                      this.state.news.map(function(newsGroup){
+                        return (
+                                <div className="col-md-10 col-md-offset-1">
+                                  <center><h2> {newsGroup.groupName} </h2></center>
+                                    <ul className="blog-list">
+                                      {
+                                        newsGroup.news.map(function(newsItem) {
+                                          return (
+                                            <NewsItem date={newsItem.date} title={newsItem.title[this.props.lang]}/>
+                                          )
+                                        }.bind(this))
+                                      }
+                                    </ul>
+                                </div>
+                        )
+                      }.bind(this))
+                    }
+                  </div>
+                  <NewsSideBar lang={this.props.lang}/>
+                </div>
             </div>
         </div>
-
       </div>
     )
   }
 }
 
-export default NewsMain;
+const mapStateToProps = (state) => {
+  return {
+    lang: state.lodcApp.lang
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsMain);

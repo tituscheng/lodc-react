@@ -295,6 +295,32 @@ padding:0;
 	text-transform:uppercase;
 }
 
+.intro-title {
+	
+}
+
+.intro-container {
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+.intro-greeting {
+	padding-bottom: 20px;
+  padding-left: 15px;
+  font-size: 17px;
+}
+
+.intro-paragraph {
+	padding-left: 15px;
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+#content {
+	padding: 80px 0 80px 0;
+	background: #f8f8f8;
+}
+
 
 /*------------------------------
 /* link
@@ -322,6 +348,11 @@ text-align:center;
  	display:table-cell;
      vertical-align:middle;
      height:100px;
+}
+
+.logo-text {
+	font-size: 17px;
+	color: white;
 }
 
 
@@ -987,7 +1018,8 @@ section.popular-course{
 }
 
 #section-testimonial{
-	background:url(../img/bg_full_1.jpg) top fixed;
+	/*background:url(../img/bg_full_1.jpg) top fixed;*/
+	background:url("https://s3-us-west-2.amazonaws.com/lodc-webcontent/testimony.png");
 	background-size:cover;
 }
 

@@ -88,29 +88,29 @@ class UpcomingEvents extends React.Component {
 
   render() {
     return (
-          <section id='page-events' className="no-padding">
-              <div className="fullwidth">
-                  <div className="one-fourth text-center">
-                      <div className="animated title-area wow slideInLeft">
-                          <span>Upcoming</span>
-                          <h1>Events</h1>
-                      </div>
-                  </div>
-
-                  <div className="three-fourth">
-                    {this.state.events.length >= 3 ?
-                      <div className="fx custom-carousel-1" ref={el => this.el = el}>
-                        {this.state.events.map(function(event, index){
-                          return (
-                            <EventItem key={index} time={event.content.time.en} title={event.content.title.en} url={"img/events/pic%20(2).jpg"} />
-                          )
-                        })}
-                      </div> : ""}
+      <section id='page-events' className="no-padding">
+          <div className="fullwidth">
+              <div className="one-fourth text-center">
+                  <div className="animated title-area wow slideInLeft">
+                      <span>{this.props.lang == "en" ? "Upcoming" : "예배"}</span>
+                      <h1>{this.props.lang == "en" ? "Events" : "안내"}</h1>
                   </div>
               </div>
-              <div className="clearfix"></div>
 
-          </section>
+              <div className="three-fourth">
+                {this.state.events.length >= 3 ?
+                  <div className="fx custom-carousel-1" ref={el => this.el = el}>
+                    {this.state.events.map(function(event, index){
+                      return (
+                        <EventItem key={index} time={event.content.time[this.props.lang]} title={event.content.title[this.props.lang]} url={event.content.url} />
+                      )
+                    }.bind(this))}
+                  </div> : ""}
+              </div>
+          </div>
+          <div className="clearfix"></div>
+
+      </section>
     )
   }
 }

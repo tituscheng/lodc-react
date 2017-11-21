@@ -20,6 +20,12 @@
 
 .top-container {
   margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.logo-text {
+  font-size: 17px;
+  color: white;
 }
 
 @keyframes App-logo-spin {

@@ -31,13 +31,13 @@ class LatestSermons extends React.Component {
           <div className="container">
               <div className="row">
                   <div className="animated col-md-8 col-md-offset-2 text-center wow fadeInUp">
-                      <h2>Latest Sermons</h2>
+                      <h2>{this.props.lang == "en" ? "Latest Sermons" : "최근 설교 영상"}</h2>
                       <div className="divider-double"></div>
                   </div>
                   <div className="col-md-10 col-md-offset-1">
                       {this.state.sermons.map(function(sermon, index) {
-                        return (<SermonItem title={sermon.title.en} date={sermon.date} url={sermon.media.youtube} key={index}/>)
-                      })}
+                        return (<SermonItem title={sermon.title[this.props.lang]} date={sermon.date} url={sermon.media.youtube} key={index}/>)
+                      }.bind(this))}
                   </div>
               </div>
           </div>
